@@ -1,0 +1,59 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="Logo">
+        <item name="android:layout_width">@dimen/logo_height_width</item>
+        <item name="android:layout_height">@dimen/logo_height_width</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:background">@color/transparent</item>
+        <item name="android:layout_marginTop">@dimen/logo_margin_top</item>
+        <item name="android:description">@string/logo_image_description</item>
+        <item name="android:src">@drawable/logo</item>
+    </style>
+
+    <style name="EditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/button_height</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColorHint">@color/white</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:paddingTop">@dimen/padding_top_bottom</item>
+        <item name="android:paddingBottom">@dimen/padding_top_bottom</item>
+        <item name="android:paddingRight">@dimen/padding</item>
+        <item name="android:paddingLeft">@dimen/padding</item>
+        <item name="android:layout_marginTop">@dimen/padding</item>
+        <item name="android:layout_marginRight">@dimen/button_margin_rigth_left</item>
+        <item name="android:layout_marginLeft">@dimen/button_margin_rigth_left</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:background">@drawable/shape_sign_up</item>
+        <item name="android:layout_centerVertical">@bool/trueValue</item>
+        <item name="android:layout_centerHorizontal">@bool/trueValue</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:inputType">text</item>
+        <item name="android:scrollHorizontally">true</item>
+    </style>
+
+    <style name="Button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/button_height</item>
+        <item name="android:layout_alignParentBottom">@bool/trueValue</item>
+        <item name="android:layout_gravity">bottom|center_vertical</item>
+        <item name="android:layout_marginRight">@dimen/button_margin_rigth_left</item>
+        <item name="android:layout_marginLeft">@dimen/button_margin_rigth_left</item>
+        <item name="android:layout_marginBottom">@dimen/marginBottom</item>
+        <item name="android:contentDescription">@string/logo_image_description</item>
+        <item name="android:background">@drawable/button_shape</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">20sp</item>
+        <!--<item name="fontPath">fonts/bold.otf</item>-->
+    </style>
+
+</resources>

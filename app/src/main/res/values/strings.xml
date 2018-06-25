@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">Task for Internship</string>
+    <string name="logo_image_description">This is description of landing page logo image</string>
+    <string name="sign_up_text">create profile by,\n share your details with us below.</string>
+    <string name="name">Enter name</string>
+    <string name="profile_name"><![CDATA[ Name : <b>%1$s</b>]]></string>
+    <string name="profile_age"><![CDATA[ Age : <b>%1$d</b>]]></string>
+    <string name="password">Enter password</string>
+    <string name="age">Enter age</string>
+    <string name="agree">By signing up you agree to our</string>
+    <string name="terms">TERMS OF USE.</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="welcome_to_stithi">Welcome to <b><font color="#347299">STITHI</font></b></string>
+    <string name="new_to_stithi">New to STITHI</string>
+    <string name="login">Login</string>
+    <string name="for_existing_user">For existing user</string>
+    <string name="edit">edit</string>
+    <string name="profile">Profile</string>
+    <string name="welcome_text"><![CDATA[Welcome <b>%1$s</b>  <br />
+     to <b><font color="#347299">STITHI</font></b>]]></string>
+
+    <string name="coin_text"><![CDATA[You have <b>%1$d</b> points <br />
+                           in your wallet]]></string>
+    <string name="send_coin">Send Coin</string>
+    <string name="logout">Log out</string>
+    <string name="image_type">image/*</string>
+    <string name="select_picture">Select Picture</string>
+    <string name="enter_points">Enter Points</string>
+    <string name="okBtnenterpoint">OK</string>
+    <string name="balanceinsearch">Balance :</string>
+</resources>

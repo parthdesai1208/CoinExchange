@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6bc5dd</color><!--3F51B5-->
+    <color name="colorPrimaryDark">#004054</color><!-- 303F9F-->
+
+    <color name="colorAccent">#FF4081</color>
+    <color name="background_color_in_whole_app">#F6F6F8</color>
+    <color name="transparent">#00000000</color>
+    <color name="white">#ffffff</color>
+    <color name="terms_color">#3eaeef</color>   <!--actual color 57B7EF-->
+    <color name="red_for_alert">#FF0000</color>
+</resources>
