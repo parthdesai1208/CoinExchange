@@ -17,8 +17,8 @@
 
     <ImageView
         android:id="@+id/userimageinsearch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:contentDescription="@string/logo_image_description"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -28,11 +28,11 @@
         android:id="@+id/balanceinsearch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="72dp"
         android:text="@string/balanceinsearch"
         android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@+id/usernameinsearch"
-        app:layout_constraintTop_toBottomOf="@+id/usernameinsearch" />
+        app:layout_constraintStart_toEndOf="@+id/userimageinsearch"
+        app:layout_constraintTop_toTopOf="@+id/userimageinsearch" />
 
     <ImageView
         android:id="@+id/payimage"

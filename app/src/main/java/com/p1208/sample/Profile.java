@@ -207,6 +207,42 @@ public class Profile extends AppCompatActivity {
                         })
                         .build();
                 return true;
+            case R.id.deleteUser:
+                new FancyGifDialog.Builder(this)
+                        .setTitle("Are you sure?")
+                        .setMessage("Your account will delete permanently")
+                        .setNegativeBtnText("Cancel")
+                        .setNegativeBtnBackground("#E04343")
+                        .setPositiveBtnText("Delete")
+                        .setPositiveBtnBackground("#6bc5dd")
+                        .setGifResource(R.drawable.running_out)
+                        .isCancellable(false)
+                        .OnPositiveClicked(new FancyGifDialogListener() {
+                            @Override
+                            public void OnClick() {
+                                //clear session
+                                SessionManager.clearsession(getBaseContext());
+                                //region delete user permanently
+                                getDetailsByUserName(tempname);
+                                DatabaseReference dR = FirebaseDatabase
+                                        .getInstance()
+                                        .getReference("user").child(searchData.get(0));
+                                dR.removeValue();
+                                //endregion
+                                startActivityForResult(new
+                                                Intent(Profile.this, MainActivity.class),
+                                        404);
+
+                            }
+                        })
+                        .OnNegativeClicked(new FancyGifDialogListener() {
+                            @Override
+                            public void OnClick() {
+                                //put blank here so by default dialog will dismiss
+                            }
+                        })
+                        .build();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -319,7 +355,8 @@ public class Profile extends AppCompatActivity {
                                     balance.setText("Balance : " + getDetailsByUserName(item.getName()));
                                     ImageView userimageinsearch = dialogView.findViewById(R.id.userimageinsearch);
                                     Glide.with(getApplicationContext())
-                                            .load(Uri.parse(searchData.get(4).toString().trim()))
+                                             .load(Uri.parse(searchData.get(4).toString().trim()))
+                                            .apply(RequestOptions.fitCenterTransform())
                                             .apply(new RequestOptions().error(R.drawable.profile_logo))
                                             .into(userimageinsearch);
                                     ImageView pay = dialogView.findViewById(R.id.payimage);

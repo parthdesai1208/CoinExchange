@@ -28,4 +28,5 @@
     <string name="enter_points">Enter Points</string>
     <string name="okBtnenterpoint">OK</string>
     <string name="balanceinsearch">Balance :</string>
+    <string name="deleteuser">deleteuser</string>
 </resources>
