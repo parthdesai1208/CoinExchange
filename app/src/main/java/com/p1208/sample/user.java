@@ -9,6 +9,7 @@ public class user implements Searchable {
     public String id;
     public String image;
     public int age;
+    public String token_id;
 
     public user() {
         //required
@@ -24,13 +25,14 @@ public class user implements Searchable {
         return this;
     }
 
-    public user(String id, String name, String password, int balance, String image, int age) {
+    public user(String id, String name, String password, int balance, String image, int age, String token_id) {
         this.name = name;
         this.id = id;
         this.password = password;
         this.balance = balance;
         this.image = image;
         this.age = age;
+        this.token_id = token_id;
     }
 
     public String getId() {
@@ -55,6 +57,10 @@ public class user implements Searchable {
 
     public int getAge() {
         return age;
+    }
+
+    public String getToken_id() {
+        return token_id;
     }
 
     @Override

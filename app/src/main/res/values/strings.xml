@@ -29,4 +29,6 @@
     <string name="okBtnenterpoint">OK</string>
     <string name="balanceinsearch">Balance :</string>
     <string name="deleteuser">deleteuser</string>
+    <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
+    <string name="loading">Loading...</string>
 </resources>

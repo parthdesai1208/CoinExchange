@@ -18,6 +18,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -117,6 +118,14 @@ public class Login extends AppCompatActivity {
             for (int i = 0; i < userList.size(); i++) {
                 if (userList.get(i).getName().trim().equals(name.getText().toString().trim())
                         && userList.get(i).getPassword().equals(password.getText().toString().trim())) {
+                    user mUser = new user(userList.get(i).getId(),
+                            name.getText().toString(),
+                            password.getText().toString(),
+                            userList.get(i).getBalance(),
+                            userList.get(i).getImage(),
+                            userList.get(i).getAge(),
+                            FirebaseInstanceId.getInstance().getToken());
+                    userObject.child(userList.get(i).getId()).setValue(mUser);
                     startActivity(new Intent(Login.this, Profile.class));
                     return;
                 }

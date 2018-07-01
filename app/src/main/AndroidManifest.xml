@@ -48,8 +48,37 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/profile"
             android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="com.p1208.sample" />
 
-        </activity>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>        </activity>
+        <!--for register device for notification-->
+        <service android:name=".service.FirebaseInstanceID">
+            <intent-filter >
+                <action android:name="com.google.firebase.INSTRANCE_ID_EVENT">
+
+                </action>
+            </intent-filter>
+        </service>
+        <!--firebase messaging service-->
+        <service android:name=".service.MessageReceiver">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+        <!-- Set custom default icon.
+        This is used when no icon is set for incoming notification messages.
+        -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_stat_name" />
+        <!-- Set color used with incoming notification messages.
+            This is used when no color is set for the incoming
+              -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorAccent" />
     </application>
 
 </manifest>

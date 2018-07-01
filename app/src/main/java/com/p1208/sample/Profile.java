@@ -29,6 +29,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.shashank.sony.fancygifdialoglib.FancyGifDialog;
 import com.shashank.sony.fancygifdialoglib.FancyGifDialogListener;
 
@@ -91,11 +92,13 @@ public class Profile extends AppCompatActivity {
                                         getResources().getString(R.string.profile_name), userList.get(i).getName())));
                         coin.setText(Html.fromHtml(
                                 String.format(getResources().getString(R.string.coin_text), userList.get(i).getBalance())));
+                        profileImgProfilePage.setImageBitmap(null);
                         Glide.with(getApplicationContext())
                                 .load(Uri.parse(userList.get(i).getImage()))
-                                .apply(new RequestOptions().error(R.drawable.profile_logo))
-                                .apply(RequestOptions.fitCenterTransform())
+                                .apply(new RequestOptions()
+                                                           .placeholder(R.drawable.profile_logo))
                                 .into(profileImgProfilePage);
+
                         profileAge.setText(Html.fromHtml(
                                 String.format(
                                         getResources().getString(R.string.profile_age), userList.get(i).getAge())));
@@ -123,6 +126,7 @@ public class Profile extends AppCompatActivity {
                 searchData.add(3, String.valueOf(userList.get(i).getBalance()));
                 searchData.add(4, String.valueOf(userList.get(i).getImage()));
                 searchData.add(5, String.valueOf(userList.get(i).getAge()));
+                searchData.add(6, String.valueOf(userList.get(i).getToken_id()));
                 mtemp = userList.get(i).getBalance();
             }
         }
@@ -161,6 +165,10 @@ public class Profile extends AppCompatActivity {
         ButterKnife.bind(this);
         userObject = FirebaseDatabase.getInstance().getReference("user");
 
+        profileName.setText(R.string.loading);
+        profileAge.setText(R.string.loading);
+        coin.setText(R.string.loading);
+
         Glide.with(getApplicationContext())
                 .asGif()
                 .load(R.drawable.coin)
@@ -196,6 +204,15 @@ public class Profile extends AppCompatActivity {
                             public void OnClick() {
                                 //clear session
                                 SessionManager.clearsession(getBaseContext());
+                                //delete device token id
+                                getDetailsByUserName(tempname);
+                                update(searchData.get(0)
+                                        , searchData.get(1),
+                                        searchData.get(2),
+                                        Integer.parseInt(searchData.get(3)),
+                                        searchData.get(4),
+                                        Integer.parseInt(searchData.get(5).trim()),
+                                        "");
                                 startActivity(new Intent(Profile.this, MainActivity.class));
                             }
                         })
@@ -313,8 +330,8 @@ public class Profile extends AppCompatActivity {
         }
     }
 
-    private void update(String id, String name, String password, int point, String image, int age) {
-        user mUser = new user(id, name, password, point, image, age);
+    private void update(String id, String name, String password, int point, String image, int age, String token_id) {
+        user mUser = new user(id, name, password, point, image, age, token_id);
         userObject.child(id).setValue(mUser);
     }
 
@@ -355,7 +372,7 @@ public class Profile extends AppCompatActivity {
                                     balance.setText("Balance : " + getDetailsByUserName(item.getName()));
                                     ImageView userimageinsearch = dialogView.findViewById(R.id.userimageinsearch);
                                     Glide.with(getApplicationContext())
-                                             .load(Uri.parse(searchData.get(4).toString().trim()))
+                                            .load(Uri.parse(searchData.get(4).toString().trim()))
                                             .apply(RequestOptions.fitCenterTransform())
                                             .apply(new RequestOptions().error(R.drawable.profile_logo))
                                             .into(userimageinsearch);
@@ -393,7 +410,8 @@ public class Profile extends AppCompatActivity {
                                                         searchData.get(2).toString(),
                                                         updatedBalance,
                                                         searchData.get(4).toString(),
-                                                        Integer.parseInt(searchData.get(5).trim()));
+                                                        Integer.parseInt(searchData.get(5).trim()),
+                                                        searchData.get(6).trim());
                                                 //update sender user
                                                 getDetailsByUserName(SessionManager.getname(dialog.getContext()));
                                                 int senderOldBalance = Integer.parseInt(searchData.get(3).trim());
@@ -403,7 +421,8 @@ public class Profile extends AppCompatActivity {
                                                         searchData.get(2).toString(),
                                                         updatedBalance,
                                                         searchData.get(4).toString(),
-                                                        Integer.parseInt(searchData.get(5).trim()));
+                                                        Integer.parseInt(searchData.get(5).trim()),
+                                                        searchData.get(6).trim());
 
                                                 Snackbar.make(rootProfile, "Send Successfully", Snackbar.LENGTH_LONG)
                                                         .show();
@@ -435,7 +454,7 @@ public class Profile extends AppCompatActivity {
             Glide.with(getBaseContext())
                     .load(data.getData())
                     .thumbnail(0.5f)
-                    .apply(RequestOptions.fitCenterTransform())
+                    .apply(RequestOptions.fitCenterTransform().dontAnimate())
                     .into(profileImgProfilePage);
             getDetailsByUserName(tempname);
             update(searchData.get(0).trim(),
@@ -443,7 +462,7 @@ public class Profile extends AppCompatActivity {
                     searchData.get(2).trim(),
                     Integer.parseInt(searchData.get(3).trim()),
                     data.getData().toString(),
-                    Integer.parseInt(searchData.get(5)));
+                    Integer.parseInt(searchData.get(5)), "");
         }
     }
 }
